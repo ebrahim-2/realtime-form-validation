@@ -1,21 +1,27 @@
 {
   "name": "form-validation",
+  "homepage": "https://ebrahimkreem.github.io/realtime-form-validation",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@types/yup": "^0.26.23",
     "formik": "^1.5.8",
+    "gh-pages": "^2.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
     "semantic-ui-react": "^0.88.0",
+    "serve": "^11.1.0",
     "yup": "^0.27.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "serve -s build",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "@types/jest": "24.0.15",
