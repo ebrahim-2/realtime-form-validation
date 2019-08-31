@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Divider, Segment, Header, Grid } from "semantic-ui-react";
 
-import CustomForm from "./Form/CustomForm";
+import Form from "./Form";
 
 const App: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const App: React.FC = () => {
                 <em>Realtime-Form-Validation</em>
               </Header>
             </Divider>
-            <CustomForm />
+            <Form />
           </Segment>
         </Grid.Column>
       </Grid>

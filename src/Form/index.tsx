@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
-import { Field as FormikField, Formik } from "formik";
-import FormErrorMsg from "./FormErrorMsg";
+import { Field as FormikField, Formik, ErrorMessage } from "formik";
 import {
   CheckboxProps,
   Form,
@@ -32,7 +31,7 @@ function checkError(formProps: any, key: any) {
 
 const CustomForm = () => {
   const [rdBoxVal, setRdBoxVal] = useState("m");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [successMessage, showSuccessMessage] = useState(false);
 
   function handleRadioBoxChange(
     e: React.FormEvent<HTMLInputElement>,
@@ -42,7 +41,7 @@ const CustomForm = () => {
   }
 
   function onSubmitHandler() {
-    setSuccessMessage("Form submited successfully");
+    showSuccessMessage(true);
   }
 
   return (
@@ -53,24 +52,33 @@ const CustomForm = () => {
     >
       {({ handleSubmit, ...formProps }) => {
         return (
-          <Form onSubmit={handleSubmit} success={successMessage ? true : false}>
+          <Form
+            onSubmit={handleSubmit}
+            success={successMessage ? true : false}
+            data-testid="form"
+          >
             <Form.Field
               error={checkError(formProps, "username") ? true : false}
             >
-              <label>
+              <label htmlFor="username">
                 Username
-                <FormErrorMsg name="username" />
+                <ErrorMessage name="username" />
               </label>
-              <FormikField name="username" placeholder="Enter username" />
+              <FormikField
+                name="username"
+                id="username"
+                placeholder="Enter username"
+              />
             </Form.Field>
 
             <Form.Field error={checkError(formProps, "email") ? true : false}>
-              <label>
-                Email <FormErrorMsg name="email" />
+              <label htmlFor="email">
+                Email <ErrorMessage name="email" />
               </label>
               <FormikField
                 name="email"
                 type="email"
+                id="email"
                 placeholder="Enter email"
               />
             </Form.Field>
@@ -78,11 +86,10 @@ const CustomForm = () => {
             <Form.Field
               error={checkError(formProps, "password") ? true : false}
             >
-              <label>
-                Password
-                <FormErrorMsg name="password" />
+              <label htmlFor="password">
+                Password <ErrorMessage name="password" />
               </label>
-              <PasswordField />
+              <PasswordField id="password" />
             </Form.Field>
             <Divider />
 
@@ -112,11 +119,14 @@ const CustomForm = () => {
             <Form.Checkbox label="I agree to the Terms and Conditions" />
             <Divider />
 
-            <Message
-              success
-              header="Form Completed"
-              content="Lorem ipsum dolor sit, amet consectetur adipisicing elit."
-            />
+            {successMessage && (
+              <Message
+                success
+                header="Form Completed"
+                content="Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+                data-testid="message"
+              />
+            )}
 
             <Button type="submit" fluid color="linkedin">
               Submit
