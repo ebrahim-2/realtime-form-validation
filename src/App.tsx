@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Divider, Segment, Header, Grid } from "semantic-ui-react";
-
 import Form from "./Form";
 
 const App: React.FC = () => {
