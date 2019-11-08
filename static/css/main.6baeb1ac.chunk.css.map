@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.css"],"names":[],"mappings":"AAAA,KACE,wBACF,CAEA,oBACE,cACF","file":"main.6baeb1ac.chunk.css","sourcesContent":["body {\n  background-color: #f7f7f7;\n}\n\n.ui.stacked.segment {\n  margin-top: 5em;\n}"]}
